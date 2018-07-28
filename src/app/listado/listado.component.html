@@ -1,0 +1,11 @@
+<div *ngIf="listado">
+  <div *ngFor="let tarea of listado " class="card mt-2">
+    <div class="card-body">
+      <b>{{tarea.nombre}}</b><br>
+      <p>{{tarea.descripcion}}</p>
+    </div>
+    <div class="card-footer">
+      <i>{{tarea.responsable}}</i>
+    </div>
+  </div>
+</div>
