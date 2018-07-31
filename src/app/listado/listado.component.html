@@ -5,7 +5,16 @@
       <p>{{tarea.descripcion}}</p>
     </div>
     <div class="card-footer">
-      <i>{{tarea.responsable}}</i>
+      <div class="row">
+        <div class="col-md-10">
+
+          <i class="text-left">{{tarea.responsable}}</i>
+        </div>
+        <div class="col-md-2">
+          <button class="btn" (click)="editar(tarea)" >E</button>
+          <button class="btn" (click)="eliminar(tarea)" >X</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

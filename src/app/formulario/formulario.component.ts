@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Tarea} from '../tarea';
 import {ListadoTareasService} from '../listado-tareas.service';
+import {TareaEditService} from '../tarea-edit.service';
 
 @Component({
   selector: 'app-formulario',
@@ -12,16 +13,32 @@ export class FormularioComponent implements OnInit {
   nombre: string;
   descripcion: string;
   responsable: string;
+  idTarea: number;
+  tareaEdit: Tarea;
 
   constructor(
-    public listadoTareasService: ListadoTareasService
+    public listadoTareasService: ListadoTareasService,
+    public tareaEditService: TareaEditService
   ) { }
 
   ngOnInit() {
+    this.validarEditar();
+  }
+
+  validarEditar() {
+    this.tareaEdit = this.tareaEditService.tarea;
+    console.log(this.tareaEdit);
+    if (this.tareaEdit && this.tareaEdit.idTarea) {
+      this.nombre = this.tareaEdit.nombre;
+      this.descripcion = this.tareaEdit.descripcion;
+      this.responsable = this.tareaEdit.responsable;
+      this.idTarea = this.tareaEdit.idTarea;
+    }
   }
 
   guardar() {
     const tarea = new Tarea(
+      this.idTarea,
       this.nombre,
       this.descripcion,
       this.responsable
@@ -29,7 +46,6 @@ export class FormularioComponent implements OnInit {
 
     this.listadoTareasService.guardar(tarea);
     this.eliminarAtributos();
-    console.log(this.listadoTareasService.consultar());
   }
 
   eliminarAtributos() {
