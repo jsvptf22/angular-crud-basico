@@ -14,7 +14,7 @@ export class FormularioComponent implements OnInit {
   descripcion: string;
   responsable: string;
   idTarea: number;
-  tareaEdit: Tarea;
+  tareaEdit: number;
 
   constructor(
     public listadoTareasService: ListadoTareasService,
@@ -22,18 +22,7 @@ export class FormularioComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.validarEditar();
-  }
-
-  validarEditar() {
-    this.tareaEdit = this.tareaEditService.tarea;
-    console.log(this.tareaEdit);
-    if (this.tareaEdit && this.tareaEdit.idTarea) {
-      this.nombre = this.tareaEdit.nombre;
-      this.descripcion = this.tareaEdit.descripcion;
-      this.responsable = this.tareaEdit.responsable;
-      this.idTarea = this.tareaEdit.idTarea;
-    }
+    this.tareaEditService.idTarea.subscribe(id => this.tareaEdit = id)
   }
 
   guardar() {

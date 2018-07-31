@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import {Tarea} from './tarea';
 
 
@@ -7,11 +8,12 @@ import {Tarea} from './tarea';
 })
 export class TareaEditService {
 
-  public tarea: Tarea;
+  private tareaSource = new BehaviorSubject(0);
+  public idTarea = this.tareaSource.asObservable();
 
   constructor() { }
 
-  marcar(tarea: Tarea) {
-    this.tarea = tarea;
+  actualizarIdTarea(id: number) {
+    this.tareaSource.next(id)
   }
 }

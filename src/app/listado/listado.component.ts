@@ -11,6 +11,7 @@ import {TareaEditService} from '../tarea-edit.service';
 export class ListadoComponent implements OnInit {
 
   listado: Tarea[];
+  idTareaEdit: number;
 
   constructor(
     public listadoTareasService: ListadoTareasService,
@@ -19,6 +20,7 @@ export class ListadoComponent implements OnInit {
 
   ngOnInit() {
     this.actualizarListado();
+    this.tareaEditService.idTarea.subscribe(id => this.idTareaEdit = id)
   }
 
   actualizarListado() {
@@ -32,7 +34,6 @@ export class ListadoComponent implements OnInit {
   }
 
   editar(tarea: Tarea) {
-    this.tareaEditService.marcar(tarea);
+    this.tareaEditService.actualizarIdTarea(tarea.idTarea);
   }
-
 }
