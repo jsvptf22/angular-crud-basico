@@ -8,12 +8,12 @@ import {Tarea} from './tarea';
 })
 export class TareaEditService {
 
-  private tareaSource = new BehaviorSubject(0);
-  public idTarea = this.tareaSource.asObservable();
+  private tareaSource = new BehaviorSubject(new Tarea());
+  public tarea = this.tareaSource.asObservable();
 
   constructor() { }
 
-  actualizarIdTarea(id: number) {
-    this.tareaSource.next(id)
+  actualizarIdTarea(tarea: Tarea) {
+    this.tareaSource.next(tarea);
   }
 }

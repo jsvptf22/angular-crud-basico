@@ -19,6 +19,10 @@ export class ListadoTareasService {
     return this.listadoTareas;
   }
 
+  modificar(tarea: Tarea) {
+    this.listadoTareas.map(t => t.idTarea === tarea.idTarea ? tarea : t);
+  }
+
   crearId() {
     return this.listadoTareas.length + 1;
   }

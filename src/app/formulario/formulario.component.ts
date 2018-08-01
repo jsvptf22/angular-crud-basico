@@ -10,11 +10,7 @@ import {TareaEditService} from '../tarea-edit.service';
 })
 export class FormularioComponent implements OnInit {
 
-  nombre: string;
-  descripcion: string;
-  responsable: string;
-  idTarea: number;
-  tareaEdit: number;
+  tarea: Tarea;
 
   constructor(
     public listadoTareasService: ListadoTareasService,
@@ -22,25 +18,17 @@ export class FormularioComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.tareaEditService.idTarea.subscribe(id => this.tareaEdit = id)
+    this.tareaEditService.tarea.subscribe(tarea => this.tarea = tarea);
   }
 
   guardar() {
-    const tarea = new Tarea(
-      this.idTarea,
-      this.nombre,
-      this.descripcion,
-      this.responsable
-    );
+    if (this.tarea.idTarea){
+      this.listadoTareasService.modificar(this.tarea);
+    } else {
+      this.listadoTareasService.guardar(this.tarea);
+    }
 
-    this.listadoTareasService.guardar(tarea);
-    this.eliminarAtributos();
-  }
-
-  eliminarAtributos() {
-    this.nombre = '';
-    this.descripcion = '';
-    this.responsable = '';
+    this.tarea = new Tarea();
   }
 
 }

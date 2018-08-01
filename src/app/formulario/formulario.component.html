@@ -5,23 +5,22 @@
     <div class="card-body">
         <div class="form-group row">
             <div class="col-sm-12">
-                <input [(ngModel)]="idTarea" type="hidden">
-                <input [(ngModel)]="nombre" type="text" class="form-control" placeholder="Nombre.">
+                <input [(ngModel)]="tarea.idTarea" type="hidden">
+                <input [(ngModel)]="tarea.nombre" type="text" class="form-control" placeholder="Nombre.">
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-12">
-                <textarea [(ngModel)]="descripcion" type="text" class="form-control" placeholder="Descripcion ..."></textarea>
+                <textarea [(ngModel)]="tarea.descripcion" type="text" class="form-control" placeholder="Descripcion ..."></textarea>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-12">
-                <input [(ngModel)]="responsable" type="text" class="form-control" placeholder="Responsable.">
+                <input [(ngModel)]="tarea.responsable" type="text" class="form-control" placeholder="Responsable.">
             </div>
         </div>
     </div>
     <div class="card-footer">
         <button class="btn btn-success btn-block" (click)="guardar()">Guardar</button>
     </div>
-    {{tareaEdit}}
 </div>
